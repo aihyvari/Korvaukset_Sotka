@@ -7,7 +7,8 @@ sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomak
   
 ## Esimerkki
 
-**Datan valintaa ja hakeminen**
+**Datan valintaa ja hakeminen** <br>
+Valitaan vuodet 2015-2017. Muistaakseni uudemmissa ei ole kaikkia tietoja.
 
 
 ```{r}
@@ -34,7 +35,7 @@ keladata <- do.call("rbind", datlist)
 #write.csv(keladata, file="JonnekinJoku.csv", row.names=FALSE
 ```
 
-**Datan esikäsittely**
+**Datan esikäsittely** <br>
 Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat hyvinvointialueen ka:lla <br>
 Käytetään uusinta vuotta testiaineistona ja vanhempia opetusaineistona. <br>
 Toki saman kunnan havainnot eri vuosilta ovat korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon
