@@ -157,13 +157,13 @@ shap.plot.summary(shap_long, x_bound  = 1.2, dilute = 10)
 plot_data <- shap.prep.stack.data(shap_contrib = shap_values$shap_score, top_n = 4, n_groups = 6)
 shap.plot.force_plot_bygroup(plot_data)
 ```
-![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAPdep.png?raw=true)
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAPdep.png?raw=true) <br>
 SHAP summary kuvasta ilmenee tärkeä seikka, kun tulkitaan esimerkin lukuisia selittäjiä sisältäviä malleja: <br>
 jos >100 selittäjää simuloitaisiin satunnaislukuina, vaikuttaisivat jotkin niistä hyviltä. <br>
 Esimerkkimalliin nousee myös mukaan sellaisia, joilla on vaikea ajatella yhetyttä lääkekustannuksiin. <br>
 Nämä voidaan toki poistaa - sen sijaan, ei voida varmistaa, johtuuko ajateltavissa oleva "järkevä" yhteys sattumasta vai onko se kausaalinen.
 
-![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/EnnVStot.png?raw=true)
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP.png?raw=true)
 ## Support Vector Machine menetelmä
 ```{r}
 ```
