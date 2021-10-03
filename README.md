@@ -1,12 +1,6 @@
 # Korvaukset Sotkanet
 Lääkekorvaukset kunnittain
 
-<!-- badges: start -->
-
-[![CRAN status](https://www.r-pkg.org/badges/version/SHAPforxgboost)](https://CRAN.R-project.org/package=SHAPforxgboost) [![status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![](https://cranlogs.r-pkg.org/badges/SHAPforxgboost)](https://cran.r-project.org/package=SHAPforxgboost) [![](https://cranlogs.r-pkg.org/badges/grand-total/SHAPforxgboost?color=orange)](https://cran.r-project.org/package=SHAPforxgboost)
-
-<!-- badges: end -->
-
 Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla.
 
 
@@ -50,7 +44,7 @@ XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
                  early_stopping_rounds = 5)
 ```
 
-##Support Vector Machine menetelmä
+## Support Vector Machine menetelmä
 ```{r}
 ```
 ## Tensorflow neuroverkko
