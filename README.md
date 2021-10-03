@@ -37,6 +37,7 @@ keladata <- do.call("rbind", datlist)
 
 **Datan esikäsittely** <br>
 Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat hyvinvointialueen ka:lla <br>
+Muuta esivalintaa.....
 Käytetään uusinta vuotta testiaineistona ja vanhempia opetusaineistona. <br>
 Toki saman kunnan havainnot eri vuosilta ovat korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon
 
