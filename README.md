@@ -12,10 +12,13 @@ Tässä on tarkoitus tutkia lääkekorvauksia.
 
 ## Esimerkki
 
-**Summary plot**
+**Datan valintaa ja hakeminen**
 
 ```{r}
 # Dataa eka.... 
+library(sotkanet)
+sotkanet.indicators <- SotkanetIndicators()
+org<-unique(sotkanet.indicators$indicator.organization)
 ```
 ## XGBoost menetelmä
 ```{r}
