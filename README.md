@@ -127,6 +127,9 @@ abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 ```
 SHAP
 ```{r}
+shap_values <- shap.values(xgb_model = malli1, X_train = dtrain)
+shap_long <- shap.prep(xgb_model = malli1, X_train = dtrain)
+shap.plot.summary(shap_long, x_bound  = 1.2, dilute = 10)
 plot_data <- shap.prep.stack.data(shap_contrib = shap_values$shap_score, top_n = 4, n_groups = 6)
 shap.plot.force_plot_bygroup(plot_data)
 ```
