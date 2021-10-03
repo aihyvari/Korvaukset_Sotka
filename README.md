@@ -31,16 +31,37 @@ for (ind in kelaind) {
   #                                                 region.category = "KUNTA")
 }
 keladata <- do.call("rbind", datlist)
+#write.csv(keladata, file="JonnekinJoku.csv", row.names=FALSE
 ```
+
+**Datan esikäsittely**
+Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat hyvinvointialueen ka:lla <br>
+Käytetään uusinta vuotta testiaineistona ja vanhempia opetusaineistona. <br>
+Toki saman kunnan havainnot eri vuosilta ovat korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon
+
+```{r}
+#keladata<-read.csv("JokuJostakin.csv", header=TRUE)
+kuntadata_wide<- keladata %>%
+  filter(region.category=="KUNTA") %>%
+  select(region.title.fi, indicator.title.fi, year, primary.value) %>% # , absolute.value)
+  spread(indicator.title.fi,primary.value)
+  
+#Kelan osalta tosin ei tainnut olla...
+  kuntadata_wide <- kuntadata_wide[,colSums(is.na(kuntadata_wide))< 0.1*nrow(kuntadata_wide)]
+  
+dtest<-kuntadata_wide[year==2017,]
+dtrain<-kuntadata_wide[year!=2017,]
+```
+
 ## XGBoost menetelmä
 ```{r}
 library(xgboost)
 library("SHAPforxgboost")
-y_var <-  as.matrix(kuntadata_wide %>%
+y_var <-  as.matrix(dtrain %>%
   select("Korvattujen lääkkeiden kustannukset, euroa / asukas"))
 summary(y_var)
 
-dtrain<-kuntadata_wide[,-1]
+dtrain<-dtrain[,-1]
 dtrain<-as.matrix(dtrain %>%
                     select(-colnames(y_var)))
 dim(dtrain)
