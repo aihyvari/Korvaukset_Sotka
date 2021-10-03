@@ -49,7 +49,7 @@ kelaind<-kelaind[!(kelaind %in% ongelmalliset)]
 datlist <- list()
 for (ind in kelaind) {
   datlist[[as.character(ind)]] <- GetDataSotkanet(indicators = ind, 
-                                                  years = 2015:2017, genders = c('total')) #,
+                                                  years = 2015:2018, genders = c('total')) #,
   #                                                 region.category = "KUNTA")
 }
 keladata <- do.call("rbind", datlist)
@@ -82,8 +82,8 @@ kuntadata_wide<-kuntadata_wide %>%
           select(-"Korvattujen lääkkeiden kustannukset, 1 000 euroa",
                  -"Korvattujen lääkkeiden kustannukset, euroa / asiakas")
   
-dtest<-kuntadata_wide[kuntadata_wide$year==2017,]
-dtrain<-kuntadata_wide[kuntadata_wide$year!=2017,]
+dtest<-kuntadata_wide[kuntadata_wide$year==2018,]
+dtrain<-kuntadata_wide[kuntadata_wide$year<2018,]
 ```
 
 ## XGBoost menetelmä
