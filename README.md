@@ -1,9 +1,9 @@
 # Korvaukset Sotkanet
 Lääkekorvaukset kunnittain
 
-Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla.
+Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla. <br>
 [Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index
-sotkanet R paketti:  (C) Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
+sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
 ## Esimerkki
