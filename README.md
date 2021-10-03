@@ -164,7 +164,9 @@ SHAP summary kuvasta ilmenee tärkeä seikka, kun tulkitaan esimerkin lukuisia s
 jos >100 selittäjää simuloitaisiin satunnaislukuina, vaikuttaisivat jotkin selittäjistä silti hyviltä. <br>
 Esimerkkimalliin nousee myös mukaan sellaisia, joilla on vaikea ajatella yhteyttä lääkekustannuksiin. <br>
 Nämä voidaan toki poistaa tutkijan harkinnan perusteella - sen sijaan, ei voida varmistaa, johtuuko ajateltavissa oleva "järkevä" yhteys sattumasta vai onko se kausaalinen.
-
+```{r}
+shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
+```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP.png?raw=true)
 ## Support Vector Machine menetelmä
 ```{r}
