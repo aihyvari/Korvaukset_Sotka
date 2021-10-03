@@ -1,5 +1,4 @@
-# Korvaukset Sotkanet
-Lääkekorvaukset kunnittain
+# Lääkekorvaukset kunnittain - Sotkanet
 
 Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla. <br>
 [Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index <br>
