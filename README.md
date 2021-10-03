@@ -15,7 +15,7 @@ LK<-GetDataSotkanet(indicators = 3225,
 LK<- LK %>%
   select(region.title.fi, indicator.title.fi, year, primary.value) 
 ```
-Yksinkertainen kuva
+Yksinkertainen kuva, josta nähdään kasvua kustannuksissa erityisesti vuoden 2017 jälkeen.
 ```{r}
 library(ggplot2)
 ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
@@ -29,7 +29,7 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kust_2010_2020.png?raw=true)
 
 **Datan valintaa ja hakeminen** <br>
-Valitaan vuodet 2015-2017. Muistaakseni uudemmissa ei ole kaikkia tietoja.
+Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja.
 
 
 ```{r}
@@ -59,8 +59,9 @@ keladata <- do.call("rbind", datlist)
 **Datan esikäsittely** <br>
 Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat hyvinvointialueen ka:lla <br>
 Muuta esivalintaa.....
-Käytetään uusinta vuotta testiaineistona ja vanhempia opetusaineistona. <br>
-Toki saman kunnan havainnot eri vuosilta ovat korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon
+Käytetään uusinta vuotta 2018 testiaineistona ja vanhempia 2015-2017 opetusaineistona. <br>
+Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvyle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen. <br>
+Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat i.i.d. havaintoja.
 
 ```{r}
 #keladata<-read.csv("JokuJostakin.csv", header=TRUE)
