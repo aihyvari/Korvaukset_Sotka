@@ -114,7 +114,24 @@ XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
                  verbose = TRUE, 
                  nthread = parallel::detectCores() - 2,
                  early_stopping_rounds = 5)
+                 
+xtrain<-xgb.DMatrix(dtrain, label= y_var)
+col<-grep("Korvattujen lääkkeiden kustannukset, euroa / asukas", colnames(dtest))
+xtest<-xgb.DMatrix(as.matrix(dtest[,-c(1,col)]), 
+                   label= as.matrix(dtest[,col]))
+watchlist = list(train=xtrain, test=xtest)
+tmp = xgb.train(data = xgb.DMatrix(data = dtrain, label= y_var), 
+                params = param_list, watchlist=watchlist, nrounds = 200)
+
+###############################################################
 ```
+Viimeiset iteraatiot:
+[197]	train-rmse:12.144533	test-rmse:38.810844 <br>
+[198]	train-rmse:11.964718	test-rmse:38.719948 <br>
+[199]	train-rmse:11.783748	test-rmse:38.604141 <br>
+[200]	train-rmse:11.614498	test-rmse:38.497894 <br>
+
+
 XGtuloksien tutkimista
 ```{r}
 #yleinen merkitys
