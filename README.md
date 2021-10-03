@@ -5,7 +5,15 @@ Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineis
 sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
-## Esimerkki
+## Esimerkki: korvattujen lääkkeiden kustannus/ asukas <br>
+Tämä on Kansaeläkelaitoksen tuottama indikaattori.
+```{r}
+LK<-GetDataSotkanet(indicators = 3225, 
+                    years = 2010:2020, genders = c('total'),
+                    region.category = "HYVINVOINTIALUE")
+LK<- LK %>%
+  select(region.title.fi, indicator.title.fi, year, primary.value) 
+```
 
 **Datan valintaa ja hakeminen** <br>
 Valitaan vuodet 2015-2017. Muistaakseni uudemmissa ei ole kaikkia tietoja.
