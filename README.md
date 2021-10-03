@@ -7,7 +7,7 @@ Lääkekorvaukset kunnittain
 
 <!-- badges: end -->
 
-Tässä on tarkoitus tutkia lääkekorvauksia.
+Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla.
 
 
 ## Esimerkki
@@ -48,4 +48,9 @@ XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
                  verbose = TRUE, 
                  nthread = parallel::detectCores() - 2,
                  early_stopping_rounds = 5)
+```
 
+##Support Vector Machine menetelmä
+```{r}
+```
+## Tensorflow neuroverkko
