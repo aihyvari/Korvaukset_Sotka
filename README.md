@@ -6,7 +6,8 @@ sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomak
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
 ## Esimerkki: korvattujen lääkkeiden kustannus/ asukas <br>
-Tämä on Kansaeläkelaitoksen tuottama indikaattori.
+Tämä on Kansaeläkelaitoksen tuottama indikaattori, numero 3225. Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.
+
 ```{r}
 LK<-GetDataSotkanet(indicators = 3225, 
                     years = 2010:2020, genders = c('total'),
@@ -90,7 +91,7 @@ dim(dtrain)
 
 # Hyperparametrit
 hparam <- list(objective = "reg:squarederror",  # Jatkuvan muuttujan regressio
-                   eta = 0.02,                  #eta control the learning rate
+                   eta = 0.02,                  # learning rate
                    max_depth = 10,
                    gamma = 0.01,                #minimum loss reduction required to make a further partition on a leaf node
                    subsample = 0.98,
@@ -99,7 +100,7 @@ hparam <- list(objective = "reg:squarederror",  # Jatkuvan muuttujan regressio
 XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
                  label =  y_var, #SELITETTÄVÄ
                  params = param_list, 
-                 nrounds = 200, #boosting iterations
+                 nrounds = 200, #iteraatiot
                  verbose = TRUE, 
                  nthread = parallel::detectCores() - 2,
                  early_stopping_rounds = 5)
