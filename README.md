@@ -115,6 +115,15 @@ XGtuloksien tutkimista
 #yleinen merkitys
 importance_matrix <- xgb.importance(model = malli1)
 xgb.plot.importance(importance_matrix[1:10,], xlab = "Selittäjien merkitys mallissa")
+test<-as.matrix(dtest[,colnames(dtrain)])
+pred_xgb <- predict(malli1, test)
+plot(dtest[,colnames(y_var)],
+     pred_xgb,
+     xlab = "Toteuma",
+     ylab = "Ennuste",
+     main = "XGboost malli")
+abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
+#####################################################
 ```
 ## Support Vector Machine menetelmä
 ```{r}
