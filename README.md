@@ -10,6 +10,7 @@ Tämä on Kansaeläkelaitoksen tuottama indikaattori, numero 3225. Kustannus sis
 
 ```{r}
 library(tidyverse)
+library(sotkanet)
 LK<-GetDataSotkanet(indicators = 3225, 
                     years = 2010:2020, genders = c('total'),
                     region.category = "ERVA")
