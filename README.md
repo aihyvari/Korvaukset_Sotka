@@ -1,4 +1,4 @@
-# Korvaukset_Sotka
+# Korvaukset Sotkanet
 Lääkekorvaukset kunnittain
 
 <!-- badges: start -->
@@ -17,7 +17,7 @@ Tässä on tarkoitus tutkia lääkekorvauksia.
 ```{r}
 # Dataa eka.... 
 
-**XGBoost menetelmä**
+## XGBoost menetelmä
 library(xgboost)
 library("SHAPforxgboost")
 y_var <-  as.matrix(kuntadata_wide %>%
