@@ -20,6 +20,13 @@ ongelmalliset <- c(1575, 1743, 1826, 1861, 1882, 1924, 1952, 2000,
 #VAIN KELA
 kelaind<-sotkanet.indicators[sotkanet.indicators$indicator.organization.title=="Kansaneläkelaitos (Kela)",1]	
 kelaind<-kelaind[!(kelaind %in% ongelmalliset)]
+datlist <- list()
+for (ind in kelaind) {
+  datlist[[as.character(ind)]] <- GetDataSotkanet(indicators = ind, 
+                                                  years = 2015:2017, genders = c('total')) #,
+  #                                                 region.category = "KUNTA")
+}
+keladata <- do.call("rbind", datlist)
 ```
 ## XGBoost menetelmä
 ```{r}
