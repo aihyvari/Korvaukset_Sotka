@@ -15,7 +15,10 @@ Tässä on tarkoitus tutkia lääkekorvauksia.
 **Summary plot**
 
 ```{r}
-# run the model with built-in data, these codes can run directly if package installed  
+# Dataa eka.... 
+
+**XGBoost menetelmä**
+library(xgboost)
 library("SHAPforxgboost")
 y_var <-  as.matrix(kuntadata_wide %>%
   select("Korvattujen lääkkeiden kustannukset, euroa / asukas"))
@@ -26,16 +29,19 @@ dtrain<-as.matrix(dtrain %>%
                     select(-colnames(y_var)))
 dim(dtrain)
 
-# hyperparameter tuning results
-hparam <- list(objective = "reg:squarederror",  # For regression
-                   eta = 0.02,
+# Hyperparametrit
+hparam <- list(objective = "reg:squarederror",  # Jatkuvan muuttujan regressio
+                   eta = 0.02,                  #eta control the learning rate
                    max_depth = 10,
-                   gamma = 0.01,
+                   gamma = 0.01,                #minimum loss reduction required to make a further partition on a leaf node
                    subsample = 0.98,
                    colsample_bytree = 0.86)
 
-XGmalli1 <- xgboost::xgboost(data = dtrain, label = as.matrix(dataXY_df[[y_var]]), 
-                       params = hparam, nrounds = 200,
-                       verbose = FALSE, 
-                       early_stopping_rounds = 8)
-                       
+XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
+                 label =  y_var, #SELITETTÄVÄ
+                 params = param_list, 
+                 nrounds = 200, #boosting iterations
+                 verbose = TRUE, 
+                 nthread = parallel::detectCores() - 2,
+                 early_stopping_rounds = 5)
+
