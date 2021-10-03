@@ -25,6 +25,7 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
   scale_x_continuous(
     labels = scales::number_format(accuracy = 1))
 ```
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kust_2010_2020.png?raw=true)
 
 **Datan valintaa ja hakeminen** <br>
 Valitaan vuodet 2015-2017. Muistaakseni uudemmissa ei ole kaikkia tietoja.
