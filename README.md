@@ -127,6 +127,8 @@ plot(dtest[,colnames(y_var)],
 abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 #####################################################
 ```
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/EnnVStot.png?raw=true)
+
 SHAP
 ```{r}
 shap_values <- shap.values(xgb_model = malli1, X_train = dtrain)
