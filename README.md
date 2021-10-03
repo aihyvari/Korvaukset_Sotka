@@ -12,7 +12,14 @@ Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineis
 # Dataa eka.... 
 library(sotkanet)
 sotkanet.indicators <- SotkanetIndicators()
+#Yhteensä on yli 3000 indikaattoria!
+
 org<-unique(sotkanet.indicators$indicator.organization)
+ongelmalliset <- c(1575, 1743, 1826, 1861, 1882, 1924, 1952, 2000, 
+                   2001, 2033, 2050, 3386, 3443)
+#VAIN KELA
+kelaind<-sotkanet.indicators[sotkanet.indicators$indicator.organization.title=="Kansaneläkelaitos (Kela)",1]	
+kelaind<-kelaind[!(kelaind %in% ongelmalliset)]
 ```
 ## XGBoost menetelmä
 ```{r}
