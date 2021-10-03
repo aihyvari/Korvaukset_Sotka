@@ -60,7 +60,7 @@ keladata <- do.call("rbind", datlist)
 Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat hyvinvointialueen ka:lla <br>
 Muuta esivalintaa.....
 Käytetään uusinta vuotta 2018 testiaineistona ja vanhempia 2015-2017 opetusaineistona. <br>
-Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvyle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen. <br>
+Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. <br>
 Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat i.i.d. havaintoja.
 
 ```{r}
