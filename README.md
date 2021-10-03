@@ -125,7 +125,7 @@ tmp = xgb.train(data = xgb.DMatrix(data = dtrain, label= y_var),
 
 ###############################################################
 ```
-Viimeiset iteraatiot:
+Viimeiset iteraatiot: <br>
 [197]	train-rmse:12.144533	test-rmse:38.810844 <br>
 [198]	train-rmse:11.964718	test-rmse:38.719948 <br>
 [199]	train-rmse:11.783748	test-rmse:38.604141 <br>
