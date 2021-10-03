@@ -110,7 +110,12 @@ XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
                  nthread = parallel::detectCores() - 2,
                  early_stopping_rounds = 5)
 ```
-
+XGtuloksien tutkimista
+```{r}
+#yleinen merkitys
+importance_matrix <- xgb.importance(model = malli1)
+xgb.plot.importance(importance_matrix[1:10,], xlab = "Selittäjien merkitys mallissa")
+```
 ## Support Vector Machine menetelmä
 ```{r}
 ```
