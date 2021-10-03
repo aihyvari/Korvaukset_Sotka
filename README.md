@@ -70,7 +70,7 @@ kuntadata_wide<- keladata %>%
   select(region.title.fi, indicator.title.fi, year, primary.value) %>% # , absolute.value)
   spread(indicator.title.fi,primary.value)
   
-#Kelan osalta tosin ei tainnut olla...
+#Osassa indikaattoreita tiedot päivittyy vasta ajan kuluessa. Voi olla puuttuvia, jos vuosi 2020, 2019, 2018,..
 kuntadata_wide <- kuntadata_wide[,colSums(is.na(kuntadata_wide))< 0.1*nrow(kuntadata_wide)]
 
 #Lääkekorvaus-muuttujat luonnollisesti täysin korreloitunut tutkittavan kanssa - otetaan pois
