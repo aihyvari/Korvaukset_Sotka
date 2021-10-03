@@ -2,11 +2,12 @@
 Lääkekorvaukset kunnittain
 
 Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla.
-
+[Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index
 
 ## Esimerkki
 
 **Datan valintaa ja hakeminen**
+
 
 ```{r}
 # Dataa eka.... 
@@ -64,3 +65,5 @@ XGmalli1 <- xgboost(data = dtrain, #SELITTÄJÄT
 ```{r}
 ```
 ## Tensorflow neuroverkko
+```{r}
+```
