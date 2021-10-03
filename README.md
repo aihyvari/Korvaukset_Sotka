@@ -16,8 +16,9 @@ Tässä on tarkoitus tutkia lääkekorvauksia.
 
 ```{r}
 # Dataa eka.... 
-
+```
 ## XGBoost menetelmä
+```{r}
 library(xgboost)
 library("SHAPforxgboost")
 y_var <-  as.matrix(kuntadata_wide %>%
