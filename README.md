@@ -9,6 +9,7 @@ sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomak
 Tämä on Kansaeläkelaitoksen tuottama indikaattori, numero 3225. Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.
 
 ```{r}
+library(tidyverse)
 LK<-GetDataSotkanet(indicators = 3225, 
                     years = 2010:2020, genders = c('total'),
                     region.category = "ERVA")
