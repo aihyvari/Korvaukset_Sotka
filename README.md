@@ -75,7 +75,9 @@ kuntadata_wide <- kuntadata_wide[,colSums(is.na(kuntadata_wide))< 0.1*nrow(kunta
 #Lääkekorvaus-muuttujat luonnollisesti täysin korreloitunut tutkittavan kanssa - otetaan pois
 kuntadata_wide<-kuntadata_wide %>%
                     select(-starts_with("Lääkekorvaukset, "))
-
+#Samoin tämä - erona asIAKAS vs asUKAS
+kuntadata_wide<-kuntadata_wide %>%
+          select(-"Korvattujen lääkkeiden kustannukset, euroa / asiakas")
   
 dtest<-kuntadata_wide[kuntadata_wide$year==2017,]
 dtrain<-kuntadata_wide[kuntadata_wide$year!=2017,]
