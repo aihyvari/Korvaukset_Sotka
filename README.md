@@ -140,6 +140,7 @@ shap.plot.summary(shap_long, x_bound  = 1.2, dilute = 10)
 plot_data <- shap.prep.stack.data(shap_contrib = shap_values$shap_score, top_n = 4, n_groups = 6)
 shap.plot.force_plot_bygroup(plot_data)
 ```
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAPdep.png?raw=true)
 ## Support Vector Machine menetelmä
 ```{r}
 ```
