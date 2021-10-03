@@ -70,10 +70,15 @@ kuntadata_wide<- keladata %>%
   spread(indicator.title.fi,primary.value)
   
 #Kelan osalta tosin ei tainnut olla...
-  kuntadata_wide <- kuntadata_wide[,colSums(is.na(kuntadata_wide))< 0.1*nrow(kuntadata_wide)]
+kuntadata_wide <- kuntadata_wide[,colSums(is.na(kuntadata_wide))< 0.1*nrow(kuntadata_wide)]
+
+#tämä luonnollisesti täysin korreloitunut tutkittavan kanssa - otetaan pois
+kuntadata_wide<-as.matrix(kuntadata_wide %>%
+                    select(-"Lääkekorvaukset, euroa / asukas"))
+
   
-dtest<-kuntadata_wide[year==2017,]
-dtrain<-kuntadata_wide[year!=2017,]
+dtest<-kuntadata_wide[kuntadata_wide$year==2017,]
+dtrain<-kuntadata_wide[kuntadata_wide$year!=2017,]
 ```
 
 ## XGBoost menetelmä
