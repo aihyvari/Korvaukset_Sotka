@@ -72,9 +72,9 @@ kuntadata_wide<- keladata %>%
 #Kelan osalta tosin ei tainnut olla...
 kuntadata_wide <- kuntadata_wide[,colSums(is.na(kuntadata_wide))< 0.1*nrow(kuntadata_wide)]
 
-#tämä luonnollisesti täysin korreloitunut tutkittavan kanssa - otetaan pois
-kuntadata_wide<-as.matrix(kuntadata_wide %>%
-                    select(-"Lääkekorvaukset, euroa / asukas"))
+#Lääkekorvaus-muuttujat luonnollisesti täysin korreloitunut tutkittavan kanssa - otetaan pois
+kuntadata_wide<-kuntadata_wide %>%
+                    select(-starts_with("Lääkekorvaukset, "))
 
   
 dtest<-kuntadata_wide[kuntadata_wide$year==2017,]
@@ -124,6 +124,11 @@ plot(dtest[,colnames(y_var)],
      main = "XGboost malli")
 abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 #####################################################
+```
+SHAP
+```{r}
+plot_data <- shap.prep.stack.data(shap_contrib = shap_values$shap_score, top_n = 4, n_groups = 6)
+shap.plot.force_plot_bygroup(plot_data)
 ```
 ## Support Vector Machine menetelmä
 ```{r}
