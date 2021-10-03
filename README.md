@@ -10,9 +10,20 @@ Tämä on Kansaeläkelaitoksen tuottama indikaattori.
 ```{r}
 LK<-GetDataSotkanet(indicators = 3225, 
                     years = 2010:2020, genders = c('total'),
-                    region.category = "HYVINVOINTIALUE")
+                    region.category = "ERVA")
 LK<- LK %>%
   select(region.title.fi, indicator.title.fi, year, primary.value) 
+```
+Yksinkertainen kuva
+```{r}
+library(ggplot2)
+ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
+  geom_line(aes(color=region.title.fi))+
+  geom_point(aes(color=region.title.fi))+
+ # theme(legend.position="bottom")+
+  ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2020")+
+  scale_x_continuous(
+    labels = scales::number_format(accuracy = 1))
 ```
 
 **Datan valintaa ja hakeminen** <br>
