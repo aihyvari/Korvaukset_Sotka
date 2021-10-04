@@ -31,7 +31,8 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kust_2010_2020.png?raw=true)
 
 **Datan valintaa ja hakeminen** <br>
-Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja.
+Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja.<br>
+Tässä poimitaan kaikki Kelan tuottamat indikaattorit. THL ja Tilastokeskuksen indikaattoreissa on epäilemättä kiinnostavia, mutta vaatisi hiukan syventymistä poimia halutut.
 
 
 ```{r}
@@ -60,7 +61,9 @@ keladata <- do.call("rbind", datlist)
 
 **Datan esikäsittely** <br>
 Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat hyvinvointialueen ka:lla <br>
-Muuta esivalintaa.....
+Kun kiinnostuksen kohteena on korvattujen lääkkeiden kustannukset/ asukas, on osa indikaattoreista ilmiselvästi korreloituneita tutkittavan kanssa. <br>
+Tällaisia ovat mm. lääkekorvaukset ja korvattujen lääkkeiden kustannukset/ asiakas. Näiden käyttö selittäjinä ei kuitenkaan ole kiinnostavaa ja tiputetaan ne pois. <br>
+<br>
 Käytetään uusinta vuotta 2018 testiaineistona ja vanhempia 2015-2017 opetusaineistona. <br>
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. <br>
 Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat i.i.d. havaintoja.
@@ -89,6 +92,9 @@ dtrain<-kuntadata_wide[kuntadata_wide$year<2018,]
 ```
 
 ## XGBoost menetelmä
+Tianqi Chen ym. Extreme Gradient Boosting https://github.com/dmlc/xgboost <br>
+HUOM: mallia ei ole tuunattu juuri lainkaan.
+
 ```{r}
 library(xgboost)
 library("SHAPforxgboost")
@@ -135,6 +141,8 @@ Viimeiset iteraatiot: <br>
 
 
 XGtuloksien tutkimista
+
+
 ```{r}
 #yleinen merkitys
 importance_matrix <- xgb.importance(model = malli1)
@@ -152,6 +160,10 @@ abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/EnnVStot.png?raw=true)
 
 SHAP
+SHAP arvot on uusi mittari kuvaamaan eri selittäjien merkitystä mallissa. SHAP arvo saadaan erikseen kullekin havainnolle - tässä kunnalle. <br>
+Tietty selittäjä voi keskimäärin olla keskimäärin vähämerkityksinen, mutta silti tärkeä joillekin havainnoille. <br>
+S. Lundberg ym. Nature Machine Intelligence volume 2, pages56–67 (2020) https://www.nature.com/articles/s42256-019-0138-9
+
 ```{r}
 shap_values <- shap.values(xgb_model = malli1, X_train = dtrain)
 shap_long <- shap.prep(xgb_model = malli1, X_train = dtrain)
@@ -169,6 +181,7 @@ shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP.png?raw=true)
 ## Support Vector Machine menetelmä
+Jos muillakin menetelmillä saisi samansuuntaisia tuloksia, voisi olla luottavaisempi niiden suhteen.
 ```{r}
 ```
 ## Tensorflow neuroverkko
