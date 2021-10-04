@@ -31,7 +31,7 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kust_2010_2020.png?raw=true)
 
 **Datan valintaa ja hakeminen** <br>
-Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja.<br>
+Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja mm. sairastavuusindeksit.<br>
 Tässä poimitaan kaikki Kelan tuottamat indikaattorit. THL ja Tilastokeskuksen indikaattoreissa on epäilemättä kiinnostavia, mutta vaatisi hiukan syventymistä poimia halutut.
 
 
@@ -110,7 +110,7 @@ dim(dtrain)
 # Hyperparametrit
 hparam <- list(objective = "reg:squarederror",  # Jatkuvan muuttujan regressio
                    eta = 0.02,                  # learning rate
-                   max_depth = 10,
+                   max_depth = 10,              #Pienennä??
                    gamma = 0.01,                #minimum loss reduction required to make a further partition on a leaf node
                    subsample = 0.98,
                    colsample_bytree = 0.86)
