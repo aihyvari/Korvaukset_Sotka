@@ -66,7 +66,7 @@ Tällaisia ovat mm. lääkekorvaukset ja korvattujen lääkkeiden kustannukset/ 
 <br>
 Käytetään uusinta vuotta 2018 testiaineistona ja vanhempia 2015-2017 opetusaineistona. <br>
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. <br>
-Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat i.i.d. havaintoja.
+Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja.
 
 ```{r}
 #keladata<-read.csv("JokuJostakin.csv", header=TRUE)
