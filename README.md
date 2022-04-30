@@ -188,6 +188,4 @@ shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 Jos muillakin menetelmillä saisi samansuuntaisia tuloksia, voisi olla luottavaisempi niiden suhteen.
 ```{r}
 ```
-## Tensorflow neuroverkko
-```{r}
-```
+
