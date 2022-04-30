@@ -11,11 +11,14 @@ Tämä on Kansaeläkelaitoksen tuottama indikaattori, numero 3225. Kustannus sis
 ```{r}
 library(tidyverse)
 library(sotkanet)
+
 LK<-GetDataSotkanet(indicators = 3225, 
-                    years = 2010:2020, genders = c('total'),
+                    years = 2010:2021, genders = c('total'),
                     region.category = "ERVA")
 LK<- LK %>%
   select(region.title.fi, indicator.title.fi, year, primary.value) 
+LK$year<-as.character(LK$year)
+
 ```
 Yksinkertainen kuva, josta nähdään kasvua kustannuksissa erityisesti vuoden 2017 jälkeen.
 ```{r}
@@ -23,10 +26,11 @@ library(ggplot2)
 ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
   geom_line(aes(color=region.title.fi))+
   geom_point(aes(color=region.title.fi))+
- # theme(legend.position="bottom")+
-  ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2020")+
-  scale_x_continuous(
-    labels = scales::number_format(accuracy = 1))
+   theme(axis.title.y=element_blank()) +
+  labs(color='ERVA-alue')+
+  #  scale_x_continuous(
+  # labels = scales::number_format(accuracy = 1)) +
+  ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2021")
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kust_2010_2020.png?raw=true)
 
