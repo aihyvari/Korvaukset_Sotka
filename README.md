@@ -32,7 +32,7 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
   # labels = scales::number_format(accuracy = 1)) +
   ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2021")
 ```
-![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kust_2010_2020.png?raw=true)
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Avo_Korv_2010_2021.png)
 
 **Datan valintaa ja hakeminen** <br>
 Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja mm. sairastavuusindeksit.<br>
