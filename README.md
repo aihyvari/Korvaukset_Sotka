@@ -6,7 +6,7 @@ Data on saatavilla R paketin avulla: [Sotkanet data portal]: https://sotkanet.fi
 Tekijät:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
-## Valittu selitettävä muuttuja: korvattujen lääkkeiden kustannus/ asukas <br>
+## Selitettävä muuttuja: korvattujen lääkkeiden kustannus/ asukas <br>
 Kyseessä Kansaeläkelaitoksen tuottama indikaattori, jonka numero Sotkanetissa on 3225. <br>
 Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.<br>
 Kyseessä verollinen korvattuihin lääkkeisiin käytetty vuosittainen summa euroa/ asukas kuntakohtaisesti. <br>
@@ -41,7 +41,7 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kustannukset_2010-2021.png)
 
-**Datan valintaa ja hakeminen** <br>
+**Datan valintaa (selittävät muuttujat) ja datan lataaminen sotkanet paketilla** <br>
 Valitaan vuodet 2015-2021. Muistaakseni uudemmissa puuttuu vielä useita tietoja mm. sairastavuusindeksit.<br>
 Tässä poimitaan kaikki Kelan, Tilastokeskuksen, Eläketurvakeskuksen ja Työ- ja elinkeinoministeriön (TEM) tuottamat indikaattorit. <br>
 THL indikaattoreissa on epäilemättä kiinnostavia, mutta vaatisi hiukan syventymistä poimia halutut.
@@ -180,13 +180,17 @@ abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/EnnVStot.png?raw=true)
 
 ## SHAP arvot
-Syvillä neuroverkoilla voidaan saada tarkkoja ennusteita, mutta kääntöpuolena mallit ovat black-boxeja. Toisin sanoen on hanakala tietää, miksi ne ennustavat, kuten ennustavat. <br>
+Syvillä neuroverkoilla (deep learning) voidaan kyllä saada tarkkoja ennusteita, mutta kääntöpuolena mallit ovat black-boxeja. Toisin sanoen niistä on hankala tietää, miksi mallit ennustavat, kuten ennustavat. <br>
+<br>
 SHAP arvot on uusi mittari kuvaamaan eri selittäjien merkitystä mallissa. SHAP arvo saadaan erikseen kullekin havainnolle - tässä kunnalle. <br>
 Tietty selittäjä voi keskimäärin olla keskimäärin vähämerkityksinen, mutta silti tärkeä joillekin havainnoille. <br>
 S. Lundberg ym. Nature Machine Intelligence volume 2, pages56–67 (2020) https://www.nature.com/articles/s42256-019-0138-9 <br>
-SHAP arvoja tulkitaan seuraavasti: jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla violetti. <br>
 <br>
-Mallin keskiarvo on keskellä kuvaa (nollakohta) ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa.
+SHAP arvoja tulkitaan seuraavasti: yksi piste kuvaa yhtä havaintoa, joka tässä on yksittäinen kunta tiettynä vuonna. <br> 
+Jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla puolestaan violetti. <br>
+Mallin keskiarvo on keskellä kuvaa (nollakohta) ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa. Jos pisteet nollakohdan oikealla puolen ovat violetteja -> selittäjän arvon kasvaminen kasvattaa selitettävän arvoa. <br>
+Jos taas keltaisia -> selittäjän kasvu pienentää selitettävää.<br>
+SHAP arvoista on myös nähtävissä, mikäli tietty selittäjä on merkityksellinen tietylle osalle havainnointoja.
 
 ```{r}
 shap_values <- shap.values(xgb_model = malli1, X_train = dtrain)
