@@ -206,7 +206,7 @@ Keskellä kuvaa on mallin keskiarvo ja pisteen sijainti suhteessa tähän keskiv
 Esimerkiksi erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
 violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen oikeutettujen osuus vaikuttavat sijaitsevan keskiviivan oikella puolella = suurempi € / asukus korvattuihin lääkkeisiin. Ts. diabeteksen vuoksi erityiskorvauksiin oikeutettujen osuus kasvattaa kunnassa korvattuihin lääkkeisiin käytetty euroa / asukas. <br>
 Lisäksi nähdään, että kyseinen muuttuja on toiseksi tärkein kaikista mallin selittäjistä.
-![alt text] (https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG?raw=true)
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG) 
 
 ## Support Vector Machine menetelmä
 Jos muillakin menetelmillä saisi samansuuntaisia tuloksia, voisi olla luottavaisempi niiden suhteen.
