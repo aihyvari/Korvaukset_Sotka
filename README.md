@@ -48,8 +48,7 @@ THL indikaattoreissa on epäilemättä kiinnostavia, mutta vaatisi hiukan syvent
 
 
 ```{r}
-# Dataa eka.... 
-library(sotkanet)
+#Listaus - kaikki indikaattorit
 sotkanet.indicators <- SotkanetIndicators()
 #Yhteensä on yli 3000 indikaattoria!
 
