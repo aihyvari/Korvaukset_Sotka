@@ -1,16 +1,17 @@
 # Lääkekustannukset kuntadatassa
 
 Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella indikaattoriaineistolla. <br>
-Data on saatavilla R paketin Sotkanet avulla:
-[Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index <br>
-sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
+Data on saatavilla R paketin avulla: [Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index <br>
+<br>
+Tekijät:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
 ## Esimerkki: korvattujen lääkkeiden kustannus/ asukas <br>
 Kyseessä Kansaeläkelaitoksen tuottama indikaattori, jonka numero Sotkanetissa on 3225. <br>
 Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.<br>
+Kyseessä verollinen korvattuihin lääkkeisiin käytetty vuosittainen summa euroa/ asukas kuntakohtaisesti. <br>
 
-Ladataan paketit ja haetaan kyseinen indikaattridata:
+Ladataan paketit ja haetaan kyseinen indikaattoridata:
 ```{r}
 library(tidyverse)
 library(sotkanet)
@@ -23,7 +24,7 @@ LK<- LK %>%
 LK$year<-as.character(LK$year)
 
 ```
-Yksinkertainen kuva, josta nähdään kasvua kustannuksissa erityisesti vuoden 2017 jälkeen.<br>
+Visualisoidaan data kuviona, josta nähdään kasvua kustannuksissa erityisesti vuoden 2017 jälkeen.<br>
 Kuvassa ERVA-alueet omina käyrinään.
 ```{r}
 #Kuva 2010-2021
@@ -37,7 +38,7 @@ ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
   ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2021")+
   xlab("Vuosi") + ylab("euroa/ asukas")
 ```
-![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Avo_Korv_2010_2021.png)
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Kustannukset_2010-2021.png)
 
 **Datan valintaa ja hakeminen** <br>
 Valitaan vuodet 2015-2021. Muistaakseni uudemmissa puuttuu vielä useita tietoja mm. sairastavuusindeksit.<br>
