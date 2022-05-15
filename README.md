@@ -6,10 +6,11 @@ Data on saatavilla R paketin avulla: [Sotkanet data portal]: https://sotkanet.fi
 Tekijät:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
-## Esimerkki: korvattujen lääkkeiden kustannus/ asukas <br>
+## Valittu selitettävä muuttuja: korvattujen lääkkeiden kustannus/ asukas <br>
 Kyseessä Kansaeläkelaitoksen tuottama indikaattori, jonka numero Sotkanetissa on 3225. <br>
 Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.<br>
 Kyseessä verollinen korvattuihin lääkkeisiin käytetty vuosittainen summa euroa/ asukas kuntakohtaisesti. <br>
+Korvatut lääkkeet ovat pääsääntöisesti reseptilääkkeitä.
 
 Ladataan paketit ja haetaan kyseinen indikaattoridata:
 ```{r}
