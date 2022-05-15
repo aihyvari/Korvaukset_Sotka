@@ -178,7 +178,8 @@ abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/EnnVStot.png?raw=true)
 
-SHAP
+## SHAP arvot
+Syvillä neuroverkoilla voidaan saada tarkkoja ennusteita, mutta kääntöpuolena mallit ovat black-boxeja. Toisin sanoen on hanakala tietää, miksi ne ennustavat, kuten ennustavat. <br>
 SHAP arvot on uusi mittari kuvaamaan eri selittäjien merkitystä mallissa. SHAP arvo saadaan erikseen kullekin havainnolle - tässä kunnalle. <br>
 Tietty selittäjä voi keskimäärin olla keskimäärin vähämerkityksinen, mutta silti tärkeä joillekin havainnoille. <br>
 S. Lundberg ym. Nature Machine Intelligence volume 2, pages56–67 (2020) https://www.nature.com/articles/s42256-019-0138-9
@@ -200,7 +201,7 @@ shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP.png?raw=true)
 
-SHAP top 5 selittäjät <br>
+#SHAP top 5 selittäjät ja tulkinta <br>
 SHAP arvoja tulkitaan seuraavasti: jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla violetti. <br>
 Keskellä kuvaa on mallin keskiarvo ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa.
 Esimerkiksi erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
