@@ -199,6 +199,15 @@ Nämä voidaan toki poistaa tutkijan harkinnan perusteella - sen sijaan, ei void
 shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP.png?raw=true)
+
+SHAP top 5 selittäjät <br>
+SHAP arvoja tulkitaan seuraavasti: jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla violetti. <br>
+Keskellä kuvaa on mallin keskiarvo ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa.
+Esimerkiksi erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
+violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen oikeutettujen osuus vaikuttavat sijaitsevan keskiviivan oikella puolella = suurempi € / asukus korvattuihin lääkkeisiin. Ts. diabeteksen vuoksi erityiskorvauksiin oikeutettujen osuus kasvattaa kunnassa korvattuihin lääkkeisiin käytetty euroa / asukas. <br>
+Lisäksi nähdään, että kyseinen muuttuja on toiseksi tärkein kaikista mallin selittäjistä.
+![alt text] https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG)
+
 ## Support Vector Machine menetelmä
 Jos muillakin menetelmillä saisi samansuuntaisia tuloksia, voisi olla luottavaisempi niiden suhteen.
 ```{r}
