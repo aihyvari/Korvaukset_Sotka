@@ -110,8 +110,9 @@ XGBoost = eXtreme Gradient Boosting on ollut suosittu algoritmi koneoppimiskilpa
 Sen avulla saadut tulokset ovat olleet kilpailukykyisiä vertailussa syviin neuroverkkoihin.
 <br>
 HUOM: mallia ei ole viimeisen päälle tuunattu. <br>
-Kuitenkin havaitaan, että test RMSE säilyy noin ~50 €/ asukas, vaikka hyperparametrien arvoja vaihdellaan. <br>
-Sen sijaan opetusaineiston RMSE:n saa hyvinkin pieneksi ylisovittamalla (enemmän?). <br>
+Kuitenkin havaitaan, että test RMSE säilyy noin 50 €/ asukas, vaikka hyperparametrien arvoja vaihdellaan huomattavastikin. <br>
+Opetusaineiston RMSE:n saa toki hyvinkin pieneksi ylisovittamalla (enemmän?), mutta ennustekyky testiaineistolla ei parane. <br>
+Ei siis ole syytä pyrkiä mahdollisimman pieneen RMSE:hen opetusaineistossa.
 
 
 ```{r}
@@ -182,7 +183,10 @@ abline(lm(pred_xgb ~ dtest[,colnames(y_var)]), col="red")
 Syvillä neuroverkoilla voidaan saada tarkkoja ennusteita, mutta kääntöpuolena mallit ovat black-boxeja. Toisin sanoen on hanakala tietää, miksi ne ennustavat, kuten ennustavat. <br>
 SHAP arvot on uusi mittari kuvaamaan eri selittäjien merkitystä mallissa. SHAP arvo saadaan erikseen kullekin havainnolle - tässä kunnalle. <br>
 Tietty selittäjä voi keskimäärin olla keskimäärin vähämerkityksinen, mutta silti tärkeä joillekin havainnoille. <br>
-S. Lundberg ym. Nature Machine Intelligence volume 2, pages56–67 (2020) https://www.nature.com/articles/s42256-019-0138-9
+S. Lundberg ym. Nature Machine Intelligence volume 2, pages56–67 (2020) https://www.nature.com/articles/s42256-019-0138-9 <br>
+SHAP arvoja tulkitaan seuraavasti: jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla violetti. <br>
+<br>
+Mallin keskiarvo on keskellä kuvaa (nollakohta) ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa.
 
 ```{r}
 shap_values <- shap.values(xgb_model = malli1, X_train = dtrain)
@@ -202,10 +206,9 @@ shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP_50.png)
 
 **SHAP top 5 selittäjät ja tulkinta** <br>
-SHAP arvoja tulkitaan seuraavasti: jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla violetti. <br>
-Keskellä kuvaa on mallin keskiarvo ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa.
+
 Esimerkiksi erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
-violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen oikeutettujen osuus vaikuttavat sijaitsevan keskiviivan oikella puolella = suurempi € / asukus korvattuihin lääkkeisiin. Ts. diabeteksen vuoksi erityiskorvauksiin oikeutettujen osuus kasvattaa kunnassa korvattuihin lääkkeisiin käytetty euroa / asukas. <br>
+violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen oikeutettujen osuus vaikuttavat sijaitsevan keskiviivan oikella puolella = suurempi € / asukus korvattuihin lääkkeisiin. Ts. diabeteksen vuoksi erityiskorvauksiin oikeutettujen osuus kasvattaa kunnassa korvattuihin lääkkeisiin käytettyä euroa / asukas. <br>
 Lisäksi nähdään, että kyseinen muuttuja on toiseksi tärkein kaikista mallin selittäjistä. Ainoastaan erityiskorvauksiin oikeutettujen kokonaisosuus on vielä merkityksellisempi.
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG) 
 
