@@ -76,7 +76,7 @@ Kun kiinnostuksen kohteena on korvattujen lääkkeiden kustannukset/ asukas, on 
 Tällaisia ovat mm. lääkekorvaukset ja korvattujen lääkkeiden kustannukset/ asiakas. Näiden käyttö selittäjinä ei kuitenkaan ole kiinnostavaa ja tiputetaan ne pois. <br>
 <br>
 Tässä tehdään train-test jako hiukan eri tavalla kuin yleensä:  <br>
-käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2019 opetusaineistona. <br>
+käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br>
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. <br>
 Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja.
 
