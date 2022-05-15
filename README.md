@@ -1,13 +1,16 @@
 # Lääkekustannukset kuntadatassa
 
-Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella aineistolla. <br>
+Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella indikaattoriaineistolla. <br>
+Data on saatavilla R paketin Sotkanet avulla:
 [Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index <br>
 sotkanet R paketti:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
   Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
   
 ## Esimerkki: korvattujen lääkkeiden kustannus/ asukas <br>
-Tämä on Kansaeläkelaitoksen tuottama indikaattori, numero 3225. Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.
+Kyseessä Kansaeläkelaitoksen tuottama indikaattori, jonka numero Sotkanetissa on 3225. <br>
+Kustannus sisältää sekä potilaan maksaman osan että korvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.<br>
 
+Ladataan paketit ja haetaan kyseinen indikaattridata:
 ```{r}
 library(tidyverse)
 library(sotkanet)
@@ -20,23 +23,26 @@ LK<- LK %>%
 LK$year<-as.character(LK$year)
 
 ```
-Yksinkertainen kuva, josta nähdään kasvua kustannuksissa erityisesti vuoden 2017 jälkeen.
+Yksinkertainen kuva, josta nähdään kasvua kustannuksissa erityisesti vuoden 2017 jälkeen.<br>
+Kuvassa ERVA-alueet omina käyrinään.
 ```{r}
+#Kuva 2010-2021
 library(ggplot2)
 ggplot(data=LK, aes(x=year, y=primary.value, group=region.title.fi)) +
   geom_line(aes(color=region.title.fi))+
   geom_point(aes(color=region.title.fi))+
-   theme(axis.title.y=element_blank()) +
+  theme(axis.title.y=element_blank()) +
+  theme_bw()+
   labs(color='ERVA-alue')+
-  #  scale_x_continuous(
-  # labels = scales::number_format(accuracy = 1)) +
-  ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2021")
+  ggtitle("Kustannukset korvatuista (avo)lääkkeistä euroa/ asukas, 2010-2021")+
+  xlab("Vuosi") + ylab("euroa/ asukas")
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Avo_Korv_2010_2021.png)
 
 **Datan valintaa ja hakeminen** <br>
-Valitaan vuodet 2015-2018. Muistaakseni uudemmissa puuttuu vielä useita tietoja mm. sairastavuusindeksit.<br>
-Tässä poimitaan kaikki Kelan tuottamat indikaattorit. THL ja Tilastokeskuksen indikaattoreissa on epäilemättä kiinnostavia, mutta vaatisi hiukan syventymistä poimia halutut.
+Valitaan vuodet 2015-2021. Muistaakseni uudemmissa puuttuu vielä useita tietoja mm. sairastavuusindeksit.<br>
+Tässä poimitaan kaikki Kelan, Tilastokeskuksen, Eläketurvakeskuksen ja Työ- ja elinkeinoministeriön (TEM) tuottamat indikaattorit. <br>
+THL indikaattoreissa on epäilemättä kiinnostavia, mutta vaatisi hiukan syventymistä poimia halutut.
 
 
 ```{r}
@@ -68,7 +74,8 @@ Tiputetaan ne, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puutt
 Kun kiinnostuksen kohteena on korvattujen lääkkeiden kustannukset/ asukas, on osa indikaattoreista ilmiselvästi korreloituneita tutkittavan kanssa. <br>
 Tällaisia ovat mm. lääkekorvaukset ja korvattujen lääkkeiden kustannukset/ asiakas. Näiden käyttö selittäjinä ei kuitenkaan ole kiinnostavaa ja tiputetaan ne pois. <br>
 <br>
-Käytetään uusinta vuotta 2018 testiaineistona ja vanhempia 2015-2017 opetusaineistona. <br>
+Tässä tehdään train-test jako hiukan eri tavalla kuin yleensä:  <br>
+käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2019 opetusaineistona. <br>
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. <br>
 Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja.
 
@@ -97,7 +104,13 @@ dtrain<-kuntadata_wide[kuntadata_wide$year<2018,]
 
 ## XGBoost menetelmä
 Tianqi Chen ym. Extreme Gradient Boosting https://github.com/dmlc/xgboost <br>
-HUOM: mallia ei ole tuunattu juuri lainkaan.
+XGBoost = eXtreme Gradient Boosting on ollut suosittu algoritmi koneoppimiskilpailuissa. <br>
+Sen avulla saadut tulokset ovat olleet kilpailukykyisiä vertailussa syviin neuroverkkoihin.
+<br>
+HUOM: mallia ei ole viimeisen päälle tuunattu. <br>
+Kuitenkin havaitaan, että test RMSE säilyy noin ~50 €/ asukas, vaikka hyperparametrien arvoja vaihdellaan. <br>
+Sen sijaan opetusaineiston RMSE:n saa hyvinkin pieneksi ylisovittamalla (enemmän?). <br>
+
 
 ```{r}
 library(xgboost)
