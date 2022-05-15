@@ -199,9 +199,9 @@ Nämä voidaan toki poistaa tutkijan harkinnan perusteella - sen sijaan, ei void
 ```{r}
 shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 ```
-![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP.png?raw=true)
+![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP_50.png)
 
-#SHAP top 5 selittäjät ja tulkinta <br>
+**SHAP top 5 selittäjät ja tulkinta **<br>
 SHAP arvoja tulkitaan seuraavasti: jos selittäjä saa pienen arvon, on pisteen väri keltainen ja suurella arvolla violetti. <br>
 Keskellä kuvaa on mallin keskiarvo ja pisteen sijainti suhteessa tähän keskiviivaan osoittaa, mihin suuntaan kyseinen selittäjä vaikuttaa poikkeuttavan selitettävän muuttujan arvoa.
 Esimerkiksi erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
