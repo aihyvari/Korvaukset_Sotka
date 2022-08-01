@@ -103,11 +103,12 @@ Tässä tehdään train-test jako hiukan eri tavalla kuin yleensä (=ristiinvali
 käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br>
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. 
 Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja. "Vuotaako" test-aineiston informaatio tätä kautta train aineistoon?? 
-<br>
+
+
 ```{r}
 #Testidata on 2020 ja opetusdata sitä aiemmat vuodet
-dtest<-kuntadata_wide[kuntadata_wide$year==2020,]
-dtrain<-kuntadata_wide[kuntadata_wide$year<2020,]
+dtest<-kuntadata_wide[kuntadata_wide$year==2021,]
+dtrain<-kuntadata_wide[kuntadata_wide$year<2021,]
 ```
 
 ## XGBoost menetelmä
