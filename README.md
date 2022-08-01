@@ -76,11 +76,6 @@ keladata <- do.call("rbind", datlist)
 Tiputetaan pois ne indikaattorit, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat arvot hyvinvointialueen ka:lla <br>
 Kun kiinnostuksen kohteena on korvattujen lääkkeiden kustannukset/ asukas, on osa indikaattoreista ilmiselvästi vahvasti korreloituneita tutkittavan kanssa. <br>
 Tällaisia ovat mm. lääkekorvaukset ja korvattujen lääkkeiden kustannukset/ asiakas. Näiden käyttö selittäjinä ei kuitenkaan ole kiinnostavaa ja tiputetaan ne pois. <br>
-<br>
-Tässä tehdään train-test jako hiukan eri tavalla kuin yleensä:  <br>
-käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br>
-Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. <br>
-Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja.
 
 ```{r}
 #ladataan edellä haettu data, jos ei jo muistissa
@@ -102,7 +97,14 @@ kuntadata_wide<-kuntadata_wide %>%
 kuntadata_wide<-kuntadata_wide %>%
           select(-"Korvattujen lääkkeiden kustannukset, 1 000 euroa",
                  -"Korvattujen lääkkeiden kustannukset, euroa / asiakas")
-
+```
+<br>
+Tässä tehdään train-test jako hiukan eri tavalla kuin yleensä (=ristiinvalidointi & satunnaisotokset):  <br>
+käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br>
+Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. 
+Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja. "Vuotaako" test-aineiston informaatio tätä kautta train aineistoon?? 
+<br>
+```{r}
 #Testidata on 2020 ja opetusdata sitä aiemmat vuodet
 dtest<-kuntadata_wide[kuntadata_wide$year==2020,]
 dtrain<-kuntadata_wide[kuntadata_wide$year<2020,]
