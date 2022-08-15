@@ -74,7 +74,7 @@ keladata <- do.call("rbind", datlist)
 
 **Datan esikäsittely** <br>
 Tiputetaan pois ne indikaattorit, joissa paljon NA:ta. Luonteva imputointi olisi toki korvata puuttuvat arvot hyvinvointialueen ka:lla <br>
-Kun kiinnostuksen kohteena on korvattujen lääkkeiden kustannukset/ asukas, on osa indikaattoreista ilmiselvästi vahvasti korreloituneita tutkittavan kanssa. <br>
+Kun kiinnostuksen kohteena on korvattujen lääkkeiden kustannukset/ asukas, on osa indikaattoreista ilmiselvästi vahvasti korreloituneita tutkittavan kanssa. 
 Tällaisia ovat mm. lääkekorvaukset ja korvattujen lääkkeiden kustannukset/ asiakas. Näiden käyttö selittäjinä ei kuitenkaan ole kiinnostavaa ja tiputetaan ne pois. <br>
 
 ```{r}
