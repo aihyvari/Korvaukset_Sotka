@@ -99,7 +99,7 @@ kuntadata_wide<-kuntadata_wide %>%
                  -"Korvattujen lääkkeiden kustannukset, euroa / asiakas")
 ```
 <br>
-Tehdään train-test jako ajanhetken suhteen (temporal split):käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br> 
+Tehdään train-test jako ajanhetken suhteen (temporal split):käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona.  
 Tämä eroaa hiukan yleensä sovelletusta satunnaisotoksena poimimisesta ja mahdollisesta ristiinvalidoinneista:  <br>
 
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. 
@@ -115,11 +115,11 @@ dtrain<-kuntadata_wide[kuntadata_wide$year<2021,]
 ## XGBoost menetelmä
 Tianqi Chen ym. Extreme Gradient Boosting https://github.com/dmlc/xgboost <br>
 XGBoost = eXtreme Gradient Boosting on ollut suosittu algoritmi koneoppimiskilpailuissa. <br>
-Sen avulla saadut tulokset ovat olleet kilpailukykyisiä vertailussa syviin neuroverkkoihin.
-Houkuttevaa "puumalleissa" on mallin tulkittavuus verrattuna neuroverkkoihin.
+XGBoostin avulla saadut tulokset ovat olleet kilpailukykyisiä vertailussa syviin neuroverkkoihin.
+Houkuttevaa puumalleissa on erityisesti mallin tulkittavuus verrattuna neuroverkkoihin. Erityisesti SHAP arvot jäjempänä ovat mielenkiintoinen kehitysaskel.
 <br>
-HUOM: mallia ei ole viimeisen päälle tuunattu. <br>
-Kuitenkin havaitaan, että test RMSE säilyy noin 50 €/ asukas, vaikka hyperparametrien arvoja vaihdellaan huomattavastikin. <br>
+HUOM: mallia ei ole viimeisen päälle tuunattu. 
+Joka tapauksessa havaitaan, että test RMSE säilyy noin 50 €/ asukas, vaikka hyperparametrien arvoja vaihdellaan huomattavastikin. <br>
 Opetusaineiston RMSE:n saa toki hyvinkin pieneksi ylisovittamalla (enemmän?), mutta ennustekyky testiaineistolla ei enää parane. <br>
 Ei siis ole syytä pyrkiä mahdollisimman pieneen RMSE:hen opetusaineistossa.
 
@@ -228,8 +228,8 @@ violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen 
 Lisäksi nähdään, että kyseinen muuttuja on toiseksi tärkein kaikista mallin selittäjistä. Ainoastaan erityiskorvauksiin oikeutettujen kokonaisosuus on vielä merkityksellisempi.
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG) 
 
-## Support Vector Machine menetelmä
-Jos muillakin menetelmillä saisi samansuuntaisia tuloksia, voisi olla luottavaisempi niiden suhteen.
+## Tulkinta
+Erityiskorvauksiin oikeutettujen osuus kunnan väestöstä näyttää olevan merkittävin avohuollon lääkekustannuksiin vaikuttava tekijä. Erityisesti diabeteksen takia erityiskorvauksiin oikeutettujen osuus nousee esiin. Vuoden 2017 jälkeen uudentyyppisten biologisten diabeteslääkkeiden käyttö näyttää siis aiheuttavan merkittäviä kustannuksia. Samalla voidaan olettaa patentin vanhentumisten ja markkinoille tulevien biosimilaarien taittavan kustannusten kasvua tässä luokassa.
 ```{r}
 ```
 
