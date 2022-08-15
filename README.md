@@ -99,10 +99,11 @@ kuntadata_wide<-kuntadata_wide %>%
                  -"Korvattujen lääkkeiden kustannukset, euroa / asiakas")
 ```
 <br>
-Tässä tehdään train-test jako hiukan eri tavalla kuin yleensä (=ristiinvalidointi & satunnaisotokset):  <br>
-käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br>
+Tehdään train-test jako ajanhetken suhteen (temporal split):käytetään uusinta vuotta 2021 testiaineistona ja vanhempia 2015-2020 opetusaineistona. <br> 
+Tämä eroaa hiukan yleensä sovelletusta satunnaisotoksena poimimisesta ja mahdollisesta ristiinvalidoinneista:  <br>
+
 Vanhempien vuosien (-2017) aineistoilla opetetun mallin ennustekyvylle on haasteena aiemmin kuvattu kustannusten kasvu 2017 jälkeen, mikä ei osu opetusaineistoon. 
-Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja. "Vuotaako" test-aineiston informaatio tätä kautta train aineistoon?? 
+Saman kunnan havainnot eri vuosilta ovat toki korreloituneet, mutta niputetaan ne silti aluksi opetusaineistoon ikään kuin olisivat itsenäisiä riippumattomia havaintoja.<br> LISÄÄ TÄSTÄ: "Vuotaako" test-aineiston informaatio tätä kautta train aineistoon?? 
 
 
 ```{r}
