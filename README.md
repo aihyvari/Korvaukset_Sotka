@@ -222,10 +222,10 @@ shap.plot.summary.wrap2(shap_values$shap_score, dtrain, top_n=20)
 ```
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/SHAP_50.png)
 
-**SHAP top 5 selittäjät ** <br>
+## SHAP top 5 selittäjät  <br>
 
-Esimerkiksi erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
-violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen oikeutettujen osuus vaikuttavat sijaitsevan keskiviivan oikella puolella = suurempi € / asukus korvattuihin lääkkeisiin. Ts. diabeteksen vuoksi erityiskorvauksiin oikeutettujen osuus kasvattaa kunnassa korvattuihin lääkkeisiin käytettyä euroa / asukas. 
+Erityiskorvattaviin lääkkeisiin diabeteksen vuoksi oikeutetut % väestöstä: <br>
+violetit pisteet = kunnat joissa keskimääräistä suurempi erityiskorvaukseen oikeutettujen osuus vaikuttavat sijaitsevan keskiviivan oikealla puolella = suurempi € / asukus korvattuihin lääkkeisiin. Toisin sanoen diabeteksen vuoksi erityiskorvauksiin oikeutettujen osuus kasvattaa kunnassa korvattuihin lääkkeisiin käytettyä euroa / asukas. 
 Lisäksi nähdään, että kyseinen muuttuja on toiseksi tärkein kaikista mallin selittäjistä. Ainoastaan erityiskorvauksiin oikeutettujen kokonaisosuus on vielä merkityksellisempi.
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG) 
 
