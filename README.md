@@ -3,14 +3,14 @@
 Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella indikaattoriaineistolla. <br>
 Data on saatavilla R paketin avulla: [Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index <br>
 Tekijät:  Leo Lahti, Einari Happonen, Juuso Parkkinen, Joona Lehtomaki, Vesa Saaristo and Pyry
-          Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis
+          Kantanen 2013-2021. sotkanet: Sotkanet Open Data Access and Analysis <br>
   <br>
 Analyysin R koodit esitetään myös, jotta analyysi olisi täysin toistettavissa ja arvioitavissa. Huomaa kuitenkin, että koko datan hakeminen (erityisesti VPN yhteyden avulla) kestää jonkin aikaa. 
   
 ## Selitettävä muuttuja: korvattujen lääkkeiden kustannus/ asukas <br>
 Kiinnostuksen kohteena on Kansaeläkelaitoksen tuottama indikaattori, jonka numero Sotkanetissa on 3225. <br>
 Kyseessä on siis verollinen korvattuihin lääkkeisiin käytetty vuosittainen summa euroa/ asukas kuntakohtaisesti. <br>
-Kustannus sisältää sekä potilaan maksaman omavastuuosan että lääkekorvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.<br>
+Kustannus sisältää sekä potilaan maksaman omavastuuosan että lääkekorvauksen. Lisäksi luku sisältää arvonlisäveron, joka on lääkkeillä 10 %.
 Korvatut lääkkeet ovat pääsääntöisesti reseptilääkkeitä.
 
 R:ssä aloitetaan lataamalla paketit ja haetaan kyseinen indikaattoridata:
