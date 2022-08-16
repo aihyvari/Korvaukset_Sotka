@@ -230,7 +230,7 @@ Lisäksi nähdään, että kyseinen muuttuja on toiseksi tärkein kaikista malli
 ![alt text](https://github.com/aihyvari/Korvaukset_Sotka/blob/main/Shap_top5.PNG) 
 
 ## Tulkinta
-Erityiskorvauksiin oikeutettujen osuus kunnan väestöstä näyttää olevan merkittävin avohuollon lääkekustannuksiin vaikuttava tekijä. Erityisesti diabeteksen takia erityiskorvauksiin oikeutettujen osuus nousee vahvasti esiin. Viime vuosina kasvanut uudentyyppisten biologisten ja patentinalaisten diabeteslääkkeiden käyttö näyttää siis aiheuttavan merkittäviä kustannuksia. Samalla voidaan olettaa patentin vanhentumisten ja markkinoille tulevien biosimilaarien taittavan kustannusten kasvua tässä luokassa, jos hinnat kääntyvät laskuun.
+Erityiskorvauksiin oikeutettujen osuus kunnan väestöstä näyttää olevan merkittävin avohuollon lääkekustannuksiin vaikuttava tekijä. Erityisesti diabeteksen takia erityiskorvauksiin oikeutettujen osuus nousee vahvasti esiin. Viime vuosina kasvanut uudentyyppisten biologisten ja patentinalaisten diabeteslääkkeiden käyttö näyttää siis aiheuttavan merkittäviä kustannuksia. Samalla voidaan olettaa patentin vanhentumisten ja markkinoille tulevien biosimilaarien taittavan kustannusten kasvua tässä luokassa olettaen, että kilpailu kääntää lääkkeiden hinnat laskuun.
 ```{r}
 ```
 
