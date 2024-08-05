@@ -1,5 +1,5 @@
 # Lääkekustannukset kuntadatassa
-#Antti Hyvärinen
+Antti Hyvärinen
 
 Tässä on tarkoitus tutkia lääkekorvauksia julkisella kuntakohtaisella indikaattoriaineistolla. <br>
 Data on saatavilla R paketin avulla: [Sotkanet data portal]: https://sotkanet.fi/sotkanet/fi/index <br>
